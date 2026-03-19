@@ -1,17 +1,25 @@
+import dotenv from "dotenv";
+dotenv.config();
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { UserEntity } from "../entities/user.entity.js";
 import { TodoEntity } from "../entities/todo.entity.js";
 
+
+const databaseUrl =  process.env.DATABASE_URL; //production Ready
+if(!databaseUrl){
+  throw new Error("DATABASE_URL not defined")
+}
+
 const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
-  username: "postgres",
-  port: 5432,
-  database: "todo-new4",
-  password: "saidat1985",
+  url: databaseUrl,
   logging: false,
   synchronize: true,
+  ssl: process.env.NODE_ENV=== "production"
+    ?{rejectUnauthorized: false}
+    :false,
+  
   entities: [UserEntity, TodoEntity],
   migrations: [],
   subscribers: []
