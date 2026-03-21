@@ -19,7 +19,7 @@ createdAt: Date;
 updatedAt: Date;
 
 @OneToMany(()=> TodoEntity, (todo)=>todo.user )
-todo!: TodoEntity[];
+todos!: any[];
 }
 
 export default UserEntity;

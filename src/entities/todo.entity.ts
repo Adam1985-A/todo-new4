@@ -22,9 +22,10 @@ createdAt: Date;
 @Column({ type: "timestamp", default: ()=> "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP"})
 updatedAt: Date;
 
-@ManyToOne(() => UserEntity, (user)=> user.todo, {onDelete: "CASCADE"})
-user: UserEntity;
+ @ManyToOne(() => UserEntity, (user) => user.todos)
+  user: any;
 }
+
 
 export default TodoEntity;
 
