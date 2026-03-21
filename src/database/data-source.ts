@@ -16,9 +16,10 @@ const AppDataSource = new DataSource({
   url: databaseUrl,
   logging: false,
   synchronize: true,
-  ssl: process.env.NODE_ENV=== "production"
-    ?{rejectUnauthorized: false}
-    :false,
+  ssl: { 
+    rejectUnauthorized: false, 
+  },
+    
   
   entities: [UserEntity, TodoEntity],
   migrations: [],
